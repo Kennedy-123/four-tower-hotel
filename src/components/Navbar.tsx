@@ -52,7 +52,7 @@ Thank you!`;
     <header
       className={`fixed inset-x-0 top-0 z-30 transition-all duration-300 ${
         scrolled
-          ? "bg-white/95 text-slate-900  shadow-lg"
+          ? "bg-dark/95 text-white shadow-lg backdrop-blur"
           : "bg-transparent text-white"
       }`}
     >
