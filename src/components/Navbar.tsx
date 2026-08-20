@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import {NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const navLinks = [
   {
@@ -16,17 +16,26 @@ const navLinks = [
   },
   {
     name: "Gallery",
-    href: "#",
+    href: "/gallery",
   },
   {
     name: "Contact",
-    href: "#",
+    href: "/contact",
   },
 ];
 
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
+  const message = `Hi, I’m interested in booking a stay at your hotel.
+
+Could you please share the available rooms, prices, and booking details?
+
+  Check-in date: [Please specify]
+  Check-out date: [Please specify]
+  Number of guests: [Please specify]
+
+Thank you!`;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -60,6 +69,9 @@ function Navbar() {
             <NavLink
               key={link.name}
               to={link.href}
+              className={({ isActive }) =>
+                isActive ? "text-primary" : "text-white"
+              }
             >
               {link.name}
             </NavLink>
@@ -67,16 +79,18 @@ function Navbar() {
         </nav>
 
         <div className="flex items-center gap-2">
-          <NavLink
-            to="#"
-            className={`hidden rounded-full px-4 py-2 text-sm font-semibold transition sm:inline-flex ${
+          <a
+          href={`https://wa.me/2347086661378?text=${encodeURIComponent(message)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className={`hidden rounded-full hover:cursor-pointer px-4 py-2 text-sm font-semibold transition sm:inline-flex ${
               scrolled
                 ? "bg-slate-900 text-white hover:bg-slate-700"
                 : "bg-white/20 text-white backdrop-blur-sm hover:bg-white/30"
             }`}
           >
             Book Now
-          </NavLink>
+          </a>
 
           <button
             type="button"
@@ -119,22 +133,28 @@ function Navbar() {
         <div className="border-t border-white/10 bg-slate-950/95 px-4 py-4 backdrop-blur md:hidden">
           <nav className="flex flex-col gap-3 text-sm font-medium">
             {navLinks.map((link) => (
-              <NavLink 
+              <NavLink
                 key={link.name}
                 to={link.href}
                 onClick={() => setMenuOpen(false)}
-                className={`rounded-lg px-2 py-2 transition hover:bg-white/10 ${scrolled && "text-white"}`}
+                className={({ isActive }) =>
+                  `rounded-lg px-2 py-2 transition hover:bg-white/10 ${
+                    isActive ? "text-primary" : "text-white"
+                  }`
+                }
               >
                 {link.name}
               </NavLink>
             ))}
-            <NavLink
-              to="#"
+            <a
+              href={`https://wa.me/2347086661378?text=${encodeURIComponent(message)}`}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
               className="mt-2 rounded-full bg-amber-500 px-4 py-2 text-center font-semibold text-slate-950"
             >
               Book Now
-            </NavLink>
+            </a>
           </nav>
         </div>
       )}

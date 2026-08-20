@@ -1,6 +1,15 @@
 import { motion } from "framer-motion";
 
 function CtaSection() {
+  const message = `Hi, I’m interested in booking a stay at your hotel.
+
+Could you please share the available rooms, prices, and booking details?
+
+  Check-in date: [Please specify]
+  Check-out date: [Please specify]
+  Number of guests: [Please specify]
+
+Thank you!`;
   return (
     <section className="relative overflow-hidden bg-[linear-gradient(135deg,rgba(2,6,23,1),rgba(15,23,42,0.96))] px-4 py-16 text-white sm:px-6 md:px-8 lg:px-12 lg:py-24">
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(212,175,55,0.16),transparent_40%)]" />
@@ -20,12 +29,14 @@ function CtaSection() {
             Ready to Experience Luxury Like Never Before?
           </h2>
           <p className="mx-auto max-w-2xl text-sm leading-8 text-text-light sm:text-base">
-            Whether you're planning a relaxing getaway or a business trip, we'll make every moment unforgettable.
+            Whether you're planning a relaxing getaway or a business trip, we'll
+            make every moment unforgettable.
           </p>
 
           <div className="mt-8 flex justify-center">
             <a
-              href="#"
+              href={`https://wa.me/2347086661378?text=${encodeURIComponent(message)}`}
+              target="_blank"
               className="rounded-full bg-linear-to-r from-primary to-primary-light px-7 py-3.5 text-sm font-semibold uppercase tracking-[0.2em] text-dark transition hover:shadow-lg hover:shadow-primary/25"
             >
               Book Your Stay

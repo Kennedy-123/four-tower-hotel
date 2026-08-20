@@ -1,4 +1,5 @@
 import { SocialIcon } from "react-social-icons";
+import { Link } from "react-router-dom";
 
 function Footer() {
   return (
@@ -13,7 +14,7 @@ function Footer() {
             <SocialIcon url="http://facebook.com/p/Four-Towers-Hotel-61551519773808/"  fgColor="#f8fafc" style={{ height: 32, width: 32 }} />
             <SocialIcon url="https://www.instagram.com/fourtowershotelandsuites?igsh=MXZiZmtyYm1xN2FveA==" fgColor="#f8fafc" style={{ height: 32, width: 32 }} />
             {/* <SocialIcon url="https://www.twitter.com" fgColor="#f8fafc" style={{ height: 32, width: 32 }} /> */}
-            <SocialIcon url="https://www.linkedin.com" fgColor="#f8fafc" style={{ height: 32, width: 32 }} />
+            <SocialIcon url="https://wa.me/2347086661378" fgColor="#f8fafc" style={{ height: 32, width: 32 }} />
           </div>
         </div>
 
@@ -23,24 +24,24 @@ function Footer() {
           </h3>
           <ul className="space-y-3 text-sm text-text-light">
             <li>
-              <a href="#" className="transition hover:text-white">
+              <Link to="/rooms" className="transition hover:text-white">
                 Rooms
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="transition hover:text-white">
+              <Link to="/amenities" className="transition hover:text-white">
                 Amenities
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="transition hover:text-white">
+              <Link to="/gallery" className="transition hover:text-white">
                 Gallery
-              </a>
+              </Link>
             </li>
             <li>
-              <a href="#" className="transition hover:text-white">
+              <Link to="/contact" className="transition hover:text-white">
                 Contact
-              </a>
+              </Link>
             </li>
           </ul>
         </div>
@@ -52,7 +53,7 @@ function Footer() {
           <div className="space-y-3 text-sm text-text-light">
             <p>No 10 liberation avenue off ukaegbu road ogborhill aba abia state nigeria</p>
             <p>hello@fourstarshotel.com</p>
-            <p>+1 (555) 123-4567</p>
+            <p>+234 708 666 1378</p>
           </div>
         </div>
       </div>

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { defaultRooms, type Room } from "../data/featuredRooms";
-import {Link} from "react-router-dom"
+import { Link } from "react-router-dom";
 
 interface FeaturedRoomsProps {
   title?: string;
@@ -88,12 +88,12 @@ function FeaturedRooms({
                 <div className="absolute inset-0 bg-linear-to-t from-dark via-transparent to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
 
                 {/* Category Badge */}
-                  <div className="absolute right-3 top-3 rounded-full border border-accent/50 bg-dark/80 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent">
+                <div className="absolute right-3 top-3 rounded-full border border-accent/50 bg-dark/80 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-accent">
                   {room.category}
                 </div>
 
                 {/* Capacity Info */}
-                  <div className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full bg-dark/80 px-3 py-1 text-xs text-text-light">
+                <div className="absolute bottom-3 left-3 flex items-center gap-2 rounded-full bg-dark/80 px-3 py-1 text-xs text-text-light">
                   <span>👥</span>
                   <span>{room.capacity} guests</span>
                 </div>
@@ -116,11 +116,6 @@ function FeaturedRooms({
                 <p className="mb-4 line-clamp-2 text-xs leading-6 text-text-light sm:text-sm">
                   {room.description}
                 </p>
-
-                {/* CTA Button */}
-                <button className="w-full rounded-lg border border-accent/50 bg-linear-to-r from-accent/10 to-accent-dark/10 px-4 py-2.5 text-center text-xs font-semibold uppercase tracking-wider text-accent transition-all duration-200 hover:border-accent hover:from-accent/20 hover:to-accent-dark/20 active:scale-95 sm:py-3 sm:text-sm hover:cursor-pointer">
-                  View Details
-                </button>
               </div>
             </div>
           </motion.div>
@@ -139,7 +134,10 @@ function FeaturedRooms({
           Looking for something special? Explore all our room types and
           amenities.
         </p>
-        <Link to="/rooms" className="rounded-lg bg-linear-to-r from-primary to-primary-light px-6 py-3 font-semibold uppercase tracking-wider text-dark shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 active:scale-95 sm:px-8 sm:py-3.5 sm:text-base hover:cursor-pointer">
+        <Link
+          to="/rooms"
+          className="rounded-lg bg-linear-to-r from-primary to-primary-light px-6 py-3 font-semibold uppercase tracking-wider text-dark shadow-lg shadow-primary/25 transition-all duration-200 hover:shadow-xl hover:shadow-primary/40 active:scale-95 sm:px-8 sm:py-3.5 sm:text-base hover:cursor-pointer"
+        >
           Browse All Rooms
         </Link>
       </motion.div>

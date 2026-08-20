@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import DatePicker from "./DatePicker";
 import GuestsPicker from "./GuestsPicker";
+import Banner from "../assets/image/image.png"
 
 interface HeroSectionProps {
   eyebrow?: string;
@@ -11,19 +12,32 @@ interface HeroSectionProps {
   secondaryCta?: string;
   backgroundImage?: string;
   navItems?: string[];
+  showBookingWidget?: boolean;
+  showPrimaryCta?: boolean;
 }
 
 function HeroSection({
   eyebrow = "Urban Luxury Retreat",
   title = "A cinematic stay in the heart of elegance.",
   description = "Discover sculpted architecture, timeless service, and unforgettable views at Four Tower Hotel.",
-  primaryCta = "Reserve Your Escape",
-  secondaryCta = "Explore Suites",
-  backgroundImage = "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?auto=format&fit=crop&w=1800&q=80",
+  primaryCta = "Explore Suites",
+  backgroundImage = Banner,
+  showBookingWidget = true,
+  showPrimaryCta = true,
 }: HeroSectionProps) {
   const [arrival, setArrival] = useState("");
   const [departure, setDeparture] = useState("");
   const [guests, setGuests] = useState("2");
+
+  const message = `Hi, I’m interested in booking a stay at your hotel.
+
+Could you please share the available rooms, prices, and booking details?
+
+  Check-in date: ${arrival ? arrival : "[Please specify]"}
+  Check-out date: ${departure ? departure : "[Please specify]"}
+  Number of guests: ${guests}
+
+Thank you!`;
 
   return (
     <div className="min-h-screen bg-background text-white">
@@ -50,56 +64,59 @@ function HeroSection({
             <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-text-light sm:mt-6 sm:text-base sm:leading-8 lg:text-lg">
               {description}
             </p>
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
-              <a
-                href="#"
-                className="rounded-full bg-primary-light px-6 py-3 text-sm font-semibold text-dark transition hover:bg-primary-dark"
-              >
-                {primaryCta}
-              </a>
-              <a
-                href="#"
-                className="rounded-full border border-text-light px-6 py-3 text-sm font-semibold text-white transition hover:bg-white/10"
-              >
-                {secondaryCta}
-              </a>
-            </div>
-
-            {/* Booking Widget */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-              className="mt-12 rounded-xl bg-white/10 p-4 backdrop-blur-xl sm:mt-16 sm:p-6"
-            >
-              <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-3">
-                {/* Arrival */}
-                <DatePicker
-                  value={arrival}
-                  onChange={setArrival}
-                  label="Arrival"
-                  icon="📅"
-                />
-
-                {/* Departure */}
-                <DatePicker
-                  value={departure}
-                  onChange={setDeparture}
-                  label="Departure"
-                  icon="📅"
-                  minDate={arrival}
-                />
-
-                {/* Guests */}
-                <GuestsPicker value={guests} onChange={setGuests} icon="👥" />
+            {showPrimaryCta && (
+              <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row sm:gap-4">
+                <a
+                  href="/rooms"
+                  className="rounded-full bg-primary-light px-6 py-3 text-sm font-semibold text-dark transition hover:bg-primary-dark"
+                >
+                  {primaryCta}
+                </a>
               </div>
+            )}
 
-              {/* Book Now Button */}
-              <button className="mt-4 w-full rounded-lg bg-secondary-dark px-6 py-3.5 font-semibold text-white shadow-lg shadow-secondary/30 transition hover:shadow-xl hover:cursor-pointer hover:shadow-secondary/40 active:scale-95 sm:mt-5">
-                Book Now
-                <span className="ml-2">›</span>
-              </button>
-            </motion.div>
+            {showBookingWidget && (
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+                className="mt-12 rounded-xl bg-white/10 p-4 backdrop-blur-xl sm:mt-16 sm:p-6"
+              >
+                <div className="grid grid-cols-1 gap-3 sm:grid-cols-3 md:gap-4 lg:grid-cols-3">
+                  {/* Arrival */}
+                  <DatePicker
+                    value={arrival}
+                    onChange={setArrival}
+                    label="Arrival"
+                    icon="📅"
+                  />
+
+                  {/* Departure */}
+                  <DatePicker
+                    value={departure}
+                    onChange={setDeparture}
+                    label="Departure"
+                    icon="📅"
+                    minDate={arrival}
+                  />
+
+                  {/* Guests */}
+                  <GuestsPicker value={guests} onChange={setGuests} icon="👥" />
+                </div>
+
+                {/* Book Now Button */}
+
+                <a
+                  href={`https://wa.me/2347086661378?text=${encodeURIComponent(message)}`}
+                  target="_blank"
+                >
+                  <button className="mt-4 w-full rounded-lg bg-secondary-dark px-6 py-3.5 font-semibold text-white shadow-lg shadow-secondary/30 transition hover:shadow-xl hover:cursor-pointer hover:shadow-secondary/40 active:scale-95 sm:mt-5">
+                    Book Now
+                    <span className="ml-2">›</span>
+                  </button>
+                </a>
+              </motion.div>
+            )}
           </motion.div>
         </div>
       </main>

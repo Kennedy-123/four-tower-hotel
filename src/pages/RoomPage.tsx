@@ -1,10 +1,20 @@
 import { motion } from "framer-motion";
 import { useMemo, useState } from "react";
+import HeroSection from "../components/HeroSection";
 import { defaultRooms, type Room } from "../data/featuredRooms";
 import TestimonialsSection from "../components/TestimonialsSection";
 import CtaSection from "../components/CtaSection";
 
 function RoomCard({ room }: { room: Room }) {
+  const message = `Hi, I'd like to make a booking inquiry for the ${room.name} at $${room.price} per night. 
+
+    Number of guests (up to ${room.capacity}):
+    Check-in date: [Please specify]
+    Check-out date: [Please specify]
+
+Could you please confirm availability and the total cost for my stay?
+
+  Thank you!`;
   return (
     <motion.article
       whileHover={{ y: -6 }}
@@ -32,8 +42,7 @@ function RoomCard({ room }: { room: Room }) {
               {room.capacity} guest{room.capacity === 1 ? "" : "s"}
             </p>
           </div>
-          <div className="text-right">
-            <p className="text-sm text-text-muted">From</p>
+          <div className="text-right pb-12">
             <p className="text-2xl font-bold text-accent sm:text-3xl">
               ${room.price}
             </p>
@@ -63,12 +72,14 @@ function RoomCard({ room }: { room: Room }) {
         </div>
 
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-          <button className="flex-1 rounded-full bg-accent px-5 py-3 text-sm font-semibold text-dark transition hover:bg-primary-light">
-            View Details
-          </button>
-          <button className="flex-1 rounded-full border border-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:border-accent hover:bg-white/5">
+          <a
+            href={`https://wa.me/2347086661378?text=${encodeURIComponent(message)}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-1 text-center text-sm rounded-full bg-accent px-5 hover:cursor-pointer py-3 font-bold text-dark transition hover:bg-primary-light"
+          >
             Book Now
-          </button>
+          </a>
         </div>
       </div>
     </motion.article>
@@ -121,78 +132,15 @@ function RoomPage() {
 
   return (
     <>
-      {/* Full-width image banner hero */}
-      <section className="relative w-full">
-        <motion.div
-          className="absolute inset-0 h-105 md:h-130 lg:h-155"
-          initial={{ scale: 1 }}
-          animate={{ scale: 1.02 }}
-          transition={{
-            duration: 24,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "linear",
-          }}
-        >
-          <img
-            src={defaultRooms[0].image}
-            alt={defaultRooms[0].name}
-            className="h-full w-full object-cover"
-            loading="lazy"
-          />
-
-          <div className="absolute inset-0 bg-linear-to-t from-black/60 via-black/30 to-transparent" />
-
-          {/* subtle color wash overlay for warmth */}
-          <div className="absolute inset-0 pointer-events-none bg-black/50" />
-        </motion.div>
-
-        <div className="relative mx-auto max-w-6xl px-4 py-28 md:py-36 lg:py-44 flex items-center justify-center text-center text-white">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={{
-              hidden: { opacity: 0, y: 12 },
-              visible: {
-                opacity: 1,
-                y: 0,
-                transition: { staggerChildren: 0.12 },
-              },
-            }}
-          >
-            <motion.p
-              className="mb-3 text-sm font-semibold uppercase tracking-[0.35em] text-accent"
-              variants={{
-                hidden: { opacity: 0, y: 6 },
-                visible: { opacity: 1, y: 0 },
-              }}
-            >
-              Rooms & Suites
-            </motion.p>
-
-            <motion.h1
-              className="mb-4 text-3xl font-semibold sm:text-4xl md:text-5xl lg:text-6xl"
-              variants={{
-                hidden: { opacity: 0, y: 8 },
-                visible: { opacity: 1, y: 0 },
-              }}
-            >
-              Restful stays, effortless luxury
-            </motion.h1>
-
-            <motion.p
-              className="mx-auto max-w-2xl text-sm leading-7 text-text-light sm:text-base"
-              variants={{
-                hidden: { opacity: 0, y: 10 },
-                visible: { opacity: 1, y: 0 },
-              }}
-            >
-              Explore our curated rooms and suites designed for comfort,
-              privacy, and memorable moments.
-            </motion.p>
-          </motion.div>
-        </div>
-      </section>
+      <HeroSection
+        eyebrow="Rooms & Suites"
+        title="Restful stays, effortless luxury"
+        description="Explore our curated rooms and suites designed for comfort, privacy, and memorable moments."
+        primaryCta="Book a Suite"
+        backgroundImage="https://images.unsplash.com/photo-1566073771259-6a8506099945?auto=format&fit=crop&w=1800&q=80"
+        showBookingWidget={false}
+        showPrimaryCta={false}
+      />
 
       {/* Rooms & Suites Section */}
       <section className="bg-background mt-8 md:mt-24 px-4 py-24 text-white sm:px-6 md:px-8 lg:px-12 lg:py-24">

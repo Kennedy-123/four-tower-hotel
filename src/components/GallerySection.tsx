@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { galleryImages } from "../data/galleryImages";
+import {Link} from "react-router-dom"
 
 function GallerySection() {
   return (
@@ -39,12 +40,12 @@ function GallerySection() {
                 The art of timeless luxury
               </h3>
             </div>
-            <a
-              href="#"
+            <Link
+              to="./gallery"
               className="text-sm font-semibold text-accent transition hover:text-primary-light"
             >
               Explore Full Gallery →
-            </a>
+            </Link>
           </div>
 
           <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-none">
